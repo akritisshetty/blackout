@@ -473,28 +473,9 @@ table.tactical tr:hover td { background: rgba(57, 255, 136, .03); }
   letter-spacing: 1px;
   text-align: center;
 }
-<<<<<<< Updated upstream
 .footer-note a { color: var(--neon); text-decoration: none; border-bottom: 1px dotted var(--neon); }
 .footer-note a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
-.built-by {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--neon);
-  text-shadow: 0 0 12px rgba(57,255,136,.6);
-  padding: 12px 16px;
-  border: 1px solid var(--neon-dim);
-  background: rgba(57, 255, 136, .08);
-  border-radius: 4px;
-  box-shadow: 0 0 20px rgba(57,255,136,.15), inset 0 0 12px rgba(57,255,136,.06);
-}
-.built-by a { color: var(--neon); text-decoration: none; border-bottom: 2px solid var(--neon); }
-.built-by a:hover { color: #fff; border-bottom-color: #fff; text-shadow: 0 0 10px #fff; }
-=======
 .built-by {
   margin-top: 10px;
   text-align: center;
@@ -505,4 +486,3 @@ table.tactical tr:hover td { background: rgba(57, 255, 136, .03); }
 }
 .built-by a { color: var(--neon-dim); text-decoration: none; border-bottom: 1px dotted var(--neon-dim); }
 .built-by a:hover { color: var(--neon); border-bottom-color: var(--neon); }
->>>>>>> Stashed changes
