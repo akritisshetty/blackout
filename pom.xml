@@ -54,13 +54,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Persistent evidence locker (production) -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Boilerplate suppression device -->
         <dependency>
             <groupId>org.projectlombok</groupId>
