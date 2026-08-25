@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: blackout
+    runtime: java
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/blackout-1.0.0.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: "17"

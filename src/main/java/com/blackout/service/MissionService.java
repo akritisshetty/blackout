@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.SecureRandom;
@@ -58,7 +57,6 @@ public class MissionService {
      * Mission generation
      * ------------------------------------------------------------------ */
 
-    @Transactional(readOnly = true)
     public MissionChallengeResponse generate(String rawCodename, String typeRaw) {
         Agent agent = agentService.requireAgent(rawCodename);
         MissionType type = parseType(typeRaw);
@@ -173,7 +171,6 @@ public class MissionService {
      * Scoring - two rules
      * ------------------------------------------------------------------ */
 
-    @Transactional
     public SolveResponse solve(String rawCodename, SolveRequest request) {
         Agent agent = agentService.requireAgent(rawCodename);
         PendingMission mission = store.get(request.token());

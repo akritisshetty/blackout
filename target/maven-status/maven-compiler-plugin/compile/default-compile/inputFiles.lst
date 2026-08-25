@@ -1,7 +1,6 @@
 /home/akriti/Documents/blackout/src/main/java/com/blackout/BlackoutServerApplication.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/controller/AgentController.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/controller/ApiExceptionHandler.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/controller/DeadDropController.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/controller/MissionController.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/controller/ToolController.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/crypto/AsymmetricEngine.java
@@ -9,8 +8,6 @@
 /home/akriti/Documents/blackout/src/main/java/com/blackout/crypto/DeadDropProtocol.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/crypto/PlayfairEngine.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/crypto/Sha256Engine.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/dto/DropResponse.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/dto/DropSubmissionRequest.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/dto/game/AgentProfileResponse.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/dto/game/AgentRegistrationRequest.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/dto/game/BadgeRegistrationRequest.java
@@ -23,13 +20,10 @@
 /home/akriti/Documents/blackout/src/main/java/com/blackout/dto/game/ToolRsaWrapRequest.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/dto/game/ToolSha256Request.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/entity/Agent.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/entity/DeadDrop.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/game/MissionBank.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/game/MissionSessionStore.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/game/MissionType.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/game/PendingMission.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/repository/AgentRepository.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/repository/DeadDropRepository.java
+/home/akriti/Documents/blackout/src/main/java/com/blackout/repository/AgentStore.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/service/AgentService.java
-/home/akriti/Documents/blackout/src/main/java/com/blackout/service/DeadDropService.java
 /home/akriti/Documents/blackout/src/main/java/com/blackout/service/MissionService.java
