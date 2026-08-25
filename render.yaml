@@ -1,7 +1,7 @@
 services:
   - type: web
     name: blackout
-    runtime: java
+    env: java
     plan: free
     buildCommand: "./mvnw clean package -DskipTests"
     startCommand: "java -jar target/blackout-1.0.0.jar --spring.profiles.active=render"
