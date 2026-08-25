@@ -23,6 +23,12 @@
     TAMPER_HUNT: 'One of three packages was tampered with. Find it.',
     SECRET_DROP: 'Unlock a hidden keyword with your RSA badge, then decrypt.'
   };
+  const EXPLAIN = {
+    SEAL_INTEL: 'How it works: The keyword builds a 5×5 grid (I/J share a cell). Plaintext is uppercased → J→I → split into digraphs; duplicate letters in a pair get an X filler. Each digraph: same row = shift right, same column = shift down, else rectangle = swap columns.',
+    CRACK_BROADCAST: 'How it works: Same 5×5 grid, but reverse — same row = shift left, same column = shift up, rectangle = swap columns. Filler Xs inserted during encryption remain; both clean phrase and padded form are accepted.',
+    TAMPER_HUNT: 'How it works: At burial each package was sealed as SHA-256(payload + "|" + keyBlob). To verify, we recompute that hash for all 3 packages and compare to the stored seal. 2 match (INTACT), 1 mismatches (ALTERED) — that one was tampered. SHA-256 changes completely if even one letter is altered.',
+    SECRET_DROP: 'How it works: Step 1 — RSA-2048 OAEP-SHA256: your browser public badge encrypted the keyword; your private badge (in localStorage, never sent) decrypts it. Step 2 — build Playfair grid from that keyword and decrypt the ciphertext with reverse Playfair rules.'
+  };
 
   let profile = null;
   let mission = null;
@@ -166,6 +172,33 @@
     return host;
   }
 
+  function howBox(type) {
+    return el('details', { style: 'margin-top:12px; border:1px dashed var(--line-bright); border-radius:4px; padding:8px 12px; background:rgba(83,216,255,0.04)' },
+      el('summary', { style: 'cursor:pointer; color:var(--cyan); font-size:11px; letter-spacing:1px; list-style:none', text: '\u25B8 How is this calculated? (learn)' }),
+      el('div', { style: 'margin-top:8px; color:var(--ink-dim); font-size:11px; line-height:1.7', text: EXPLAIN[type] })
+    );
+  }
+
+  function calcDetail(res) {
+    const d = mission.data;
+    let text = '';
+    const ans = res.expectedAnswer ? 'Expected answer was "' + res.expectedAnswer + '". ' : '';
+    if (mission.type === 'SEAL_INTEL') {
+      text = ans + 'Calculated: keyword "' + d.keyword + '" → 5\u00D75 grid (I/J shared). Plaintext "' + d.message + '" → uppercased, J\u2192I, split into ' + d.bigrams + ' (X fillers for duplicates). Each digraph: same row→right, same col→down, rectangle→swap cols → ciphertext.';
+    } else if (mission.type === 'CRACK_BROADCAST') {
+      text = ans + 'Calculated: grid from "' + d.keyword + '", ciphertext "' + d.cipherText + '" → digraphs → reverse: row→left, col→up, rectangle→swap cols. Both clean phrase and X-padded form accepted.';
+    } else if (mission.type === 'TAMPER_HUNT') {
+      text = ans + 'Calculated: SHA-256(payload + "|" + keyBlob) recomputed for each package and compared to stored seal. Exactly one mismatches — that\'s the fake. SHA-256 changes completely if even one letter is altered (avalanche effect).';
+    } else if (mission.type === 'SECRET_DROP') {
+      text = ans + 'Calculated in 2 steps: 1) RSA-OAEP-SHA256 decrypt of the locked keyword with your browser private badge → keyword. 2) Build Playfair grid from that keyword and reverse-decrypt "' + d.cipherText + '".';
+    }
+    if (!text) text = EXPLAIN[mission.type];
+    return el('div', { style: 'margin-top:14px; border-left:3px solid var(--cyan); padding:10px 12px; background:rgba(83,216,255,0.06); border-radius:3px; text-align:left' },
+      el('div', { style: 'color:var(--cyan); font-size:11px; letter-spacing:1px; margin-bottom:6px', text: 'HOW IT WAS CALCULATED' }),
+      el('div', { style: 'color:var(--ink-dim); font-size:11px; line-height:1.7', text: text })
+    );
+  }
+
   async function submit(payload) {
     try {
       setStatus('busy', 'checking...');
@@ -222,7 +255,8 @@
           async (box) => {
             const out = await API.playfairSeal(d.message, d.keyword.toLowerCase());
             box.value = out.cipherText;
-          }));
+          }),
+        howBox(mission.type));
     }
 
     if (mission.type === 'CRACK_BROADCAST') {
@@ -238,7 +272,8 @@
           async (box) => {
             const out = await API.playfairOpen(d.cipherTextCompact, d.keyword.toLowerCase());
             box.value = out.plainText;
-          }));
+          }),
+        howBox(mission.type));
     }
 
     if (mission.type === 'TAMPER_HUNT') {
@@ -287,7 +322,8 @@
               if (picked === null) { toast('Pick one package first', true); return; }
               submit({ flaggedTamperedIds: [picked] });
             }
-          }, 'SUBMIT')));
+          }, 'SUBMIT')),
+        howBox(mission.type));
     }
 
     // SECRET_DROP - RSA unlock, then Playfair decrypt
@@ -337,7 +373,8 @@
         el('button', {
           class: 'btn primary',
           onclick: () => submit({ plainText: answer.value })
-        }, 'SUBMIT')));
+        }, 'SUBMIT')),
+      howBox(mission.type));
   }
 
   /* ---------- results ---------- */
@@ -360,6 +397,7 @@
         el('div', { class: 'sub', text: res.correct
           ? 'Nice work, agent.'
           : 'The right answer was: ' + res.expectedAnswer })),
+      calcDetail(res),
       el('div', { class: 'btn-row', style: 'justify-content:center;margin-top:18px' },
         el('button', {
           class: 'btn primary',
