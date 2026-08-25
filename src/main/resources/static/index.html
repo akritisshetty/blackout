@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLACKOUT // The Cipher Game</title>
+  <link rel="stylesheet" href="css/blackout.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23070b09'/%3E%3Ctext x='2' y='12' font-size='10' fill='%2339ff88' font-family='monospace'%3E%E2%9A%9A%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="shell">
+
+    <header class="masthead">
+      <h1 class="logo">&#9608;&#9608; BLACKOUT &#9608;&#9608;<small>THE CIPHER GAME</small></h1>
+      <div class="agent-chip" id="agent-chip">
+        <span class="codename" id="chip-codename"></span>
+        <span><span class="score" id="chip-score">0</span> pts</span>
+        <span id="chip-solved"></span>
+        <button class="btn ghost" id="btn-logout">EXIT</button>
+      </div>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-view="play">PLAY</button>
+      <button class="tab" data-view="top">TOP AGENTS</button>
+    </nav>
+
+    <!-- ================= PLAY ================= -->
+    <section class="view active" id="view-play">
+      <div id="name-form" class="panel" style="display:none">
+        <h2 class="panel-title">// ENTER A CODENAME TO START</h2>
+        <input type="text" id="codename-input" maxlength="40" placeholder="e.g. NIGHTOWL"
+               autocomplete="off" spellcheck="false" />
+        <div class="btn-row">
+          <button class="btn primary" id="btn-start">START &raquo;</button>
+        </div>
+        <p class="hint" style="margin-top:12px">
+          Four missions repeat forever, one after another:<br />
+          <b>1. SEAL THE INTEL</b> encrypt with Playfair (+10) &nbsp; &nbsp;
+          <b>2. CRACK THE CODE</b> decrypt (+15)<br />
+          <b>3. FIND THE FAKE</b> spot the tampered package (+20) &nbsp;
+          <b>4. SECRET DROP</b> unlock RSA, then decrypt (+25)<br /><br />
+          Solve by hand for full points, or press AUTO for half. Wrong answers cost nothing.
+        </p>
+      </div>
+      <div id="play-area"></div>
+    </section>
+
+    <!-- ================= TOP AGENTS ================= -->
+    <section class="view" id="view-top">
+      <div class="panel">
+        <h2 class="panel-title">// TOP AGENTS</h2>
+        <div id="top-body"></div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      Spring Boot relay &middot; Playfair = encryption &middot; RSA = key unlocking &middot; SHA-256 = tamper check
+    </footer>
+    <div class="built-by">Built by <a href="https://github.com/akritisshetty" target="_blank" rel="noopener">Akriti S Shetty</a></div>
+  </div>
+
+  <div class="statusbar">
+    <span class="status-pill" id="status-pill">[ STATUS: IDLE ]</span>
+    <span class="status-msg" id="status-msg">standing by</span>
+  </div>
+  <div class="toast-wrap" id="toasts"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/badge.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
