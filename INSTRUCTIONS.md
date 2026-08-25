@@ -34,17 +34,6 @@ They always come in this order:
 2. **RSA-2048** (mission 4) - real modern encryption. Your browser creates a secret key the server never sees; the server locks things that only your key can open.
 3. **SHA-256** (mission 3) - a fingerprint of data. Change even one letter and the fingerprint stops matching - that's how you spot the fake.
 
-## Enigma — Local Helper (clone-only)
-
-The `enigma/` directory will help users to get the correct answer of any algorithm. It helps users who don't know how cryptography algorithms work or who want to know the answers to the questions. It is just for help.
-
-> Only users who **clone this project and run it on their system** will get the benefits of Enigma. Users who use only the hosted website will not — the full repo (including `enigma/`) is not exposed there.
-
-Run locally:
-```bash
-cd enigma && javac *.java && java MainUI
-```
-
 ## FAQ
 
 - **Lost your progress?** Scores live only while the server runs (in-memory by design). Type the same codename while it's up to resume.
