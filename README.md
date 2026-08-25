@@ -65,6 +65,17 @@ Base: `http://127.0.0.1:8080`
 - Codename-only login is fine on loopback and nowhere else.
 - Raw SHA-256 seals are not keyed MACs; RSA wraps only a short keyword here.
 
+## Enigma — Local Helper (clone-only)
+
+The `enigma/` directory will help users to get the correct answer of any algorithm. It helps users who don't know how cryptography algorithms work or who want to know the answers to the questions. It is just for help.
+
+> Only users who **clone this project and run it on their system** will get the benefits of Enigma. Users who use only the hosted website will not — the full repo (including `enigma/`) is not exposed there.
+
+Run locally:
+```bash
+cd enigma && javac *.java && java MainUI
+```
+
 ## Tech stack
 
 Java 17+ · Spring Boot 3.3 (Web, JPA, Validation) · H2 · vanilla HTML/CSS/JS + WebCrypto · Lombok · JUnit 5 / MockMvc · Maven

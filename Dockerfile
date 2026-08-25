@@ -1,3 +1,6 @@
+# enigma/ is a local-only helper (see README.md) — not copied to the hosted image.
+# It helps users get the correct answer of any algorithm (just for help).
+# Only users who clone the repo and run locally can use it; hosted users won't see the repo.
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .

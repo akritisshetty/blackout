@@ -196,7 +196,17 @@ open http://127.0.0.1:8080
 
 ---
 
-## 9. Observations and Design Decisions
+## 9. Enigma — Local Helper (clone-only)
+
+The `enigma/` directory will help users to get the correct answer of any algorithm. It helps users who don't know how cryptography algorithms work or who want to know the answers to the questions. It is just for help.
+
+> Only users who **clone this project and run it on their system** will get the benefits of Enigma. Users who use only the hosted website will not — the full repo (including `enigma/`) is not exposed there.
+
+Run locally: `cd enigma && javac *.java && java MainUI` — standalone Swing app for RSA / SHA-256 / Playfair (both encrypt and decrypt).
+
+---
+
+## 10. Observations and Design Decisions
 
 1. **No database** — All agent profiles and scores are stored in-memory via `ConcurrentHashMap` (`AgentStore`). Data lives for the lifetime of the server process. This eliminates database setup, connection pooling, and migration complexity.
 
@@ -210,7 +220,7 @@ open http://127.0.0.1:8080
 
 ---
 
-## 10. Known Limitations
+## 11. Known Limitations
 
 - **Playfair cipher is weak** — It is a classical cipher with well-known vulnerabilities (frequency analysis, digraph patterns). It is used here purely for educational value.
 - **No real authentication** — Codename-only identification is not secure for multi-user or networked deployments.
@@ -220,6 +230,6 @@ open http://127.0.0.1:8080
 
 ---
 
-## 11. Conclusion
+## 12. Conclusion
 
 BLACKOUT is a well-structured, educational full-stack Java application that successfully combines game mechanics with real cryptographic concepts. The clean layered architecture, comprehensive test coverage (24 tests), and clever use of browser-side RSA badge minting make it both a functional game and a practical demonstration of cryptographic principles. With no database dependency, it deploys as a single JAR on Render with minimal configuration.

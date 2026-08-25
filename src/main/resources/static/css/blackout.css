@@ -473,3 +473,5 @@ table.tactical tr:hover td { background: rgba(57, 255, 136, .03); }
   letter-spacing: 1px;
   text-align: center;
 }
+.footer-note a { color: var(--neon); text-decoration: none; border-bottom: 1px dotted var(--neon); }
+.footer-note a:hover { color: var(--ink); border-bottom-color: var(--ink); }
