@@ -1,4 +1,4 @@
-# ▚▚ BLACKOUT ▚▞
+# ▚▞ BLACKOUT ▚▞
 
 **The Cipher Game — a simple full stack Java web game that teaches cryptography by making you use it.**
 
