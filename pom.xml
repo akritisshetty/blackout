@@ -47,10 +47,17 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- In-memory evidence locker -->
+        <!-- In-memory evidence locker (local dev) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Persistent evidence locker (production) -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 

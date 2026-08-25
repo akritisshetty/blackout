@@ -42,9 +42,8 @@ public class DeadDrop {
     @Column(length = 120)
     private String locationTag;
 
-    /** Playfair ciphertext - potentially long, hence CLOB storage. */
+    /** Playfair ciphertext - potentially long, hence LOB storage. */
     @Lob
-    @Column(columnDefinition = "CLOB")
     private String encryptedPayload;
 
     /** RSA-OAEP wrapped Playfair keyword, Base64 encoded. */

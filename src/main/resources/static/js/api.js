@@ -12,7 +12,7 @@
     try {
       response = await fetch(path, options);
     } catch (networkError) {
-      throw { status: 0, message: 'SERVER UNREACHABLE - is it running on :8080?' };
+      throw { status: 0, message: 'SERVER UNREACHABLE - check the relay endpoint.' };
     }
 
     const text = await response.text();
